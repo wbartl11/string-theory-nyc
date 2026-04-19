@@ -11,7 +11,34 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "String Theory NYC — Tennis Racket Stringing in Manhattan",
   description:
-    "Professional tennis racket stringing in Manhattan, NYC. Drop off your racket and pick it up freshly strung. Est. 2026.",
+    "Professional tennis racket stringing in Manhattan, NYC. Drop off your racket and pick it up freshly strung. Serving the Upper East Side. Est. 2026.",
+  metadataBase: new URL("https://stringtheorynyc.com"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "String Theory NYC — Tennis Racket Stringing in Manhattan",
+    description:
+      "Professional tennis racket stringing in Manhattan, NYC. Drop off your racket and pick it up freshly strung. Serving the Upper East Side.",
+    url: "https://stringtheorynyc.com",
+    siteName: "String Theory NYC",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "String Theory NYC — Tennis Racket Stringing in Manhattan",
+    description:
+      "Professional tennis racket stringing in Manhattan, NYC. Drop off your racket and pick it up freshly strung.",
+  },
+  keywords: [
+    "tennis stringing NYC",
+    "tennis racket stringing Manhattan",
+    "racket stringing Upper East Side",
+    "tennis string service New York",
+    "tennis restringing NYC",
+    "String Theory NYC",
+  ],
 };
 
 export default function RootLayout({
