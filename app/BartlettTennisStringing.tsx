@@ -492,7 +492,7 @@ export default function StringTheoryNYC() {
             className="text-3xl md:text-4xl font-black tracking-tight text-center mb-10"
             style={{ color: GREEN }}
           >
-            Upper East Side, Manhattan
+            Tennis Restringing in the Upper East Side, Manhattan
           </h2>
           <div className="rounded-2xl overflow-hidden shadow-sm" style={{ border: `1px solid rgba(45,90,61,0.1)` }}>
             <iframe
@@ -527,7 +527,7 @@ export default function StringTheoryNYC() {
             Get In Touch
           </p>
           <h2 className="text-3xl md:text-4xl font-black tracking-tight text-center mb-14 text-white">
-            Ready to Book?
+            Ready to Book a Restring?
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
