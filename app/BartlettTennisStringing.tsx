@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Phone, MapPin } from "lucide-react";
 
@@ -14,8 +15,8 @@ function InstagramIcon() {
   );
 }
 
-const GREEN = "#2d5a3d";
-const CREAM = "#e8e8d5";
+const GREEN = "#26623d";
+const CREAM = "#ebebd2";
 const WHITE = "#ffffff";
 
 const STRINGS = [
@@ -23,20 +24,22 @@ const STRINGS = [
     tier: "Recreational",
     items: [
       {
-        name: "Babolat Synthetic Gut",
+        name: "Babolat Synthetic Gut (16/1.30mm)",
         type: "Synthetic Gut",
         totalPrice: 32,
         tagline: "Comfortable. Consistent. Affordable.",
         description:
           "A sensible all-around string for casual players and beginners. Reliable feel at an accessible price — no frills, just playability.",
+        ratings: { spin: 2, power: 4, control: 3, comfort: 4, durability: 2 },
       },
       {
-        name: "Tecnifibre 4S",
+        name: "Tecnifibre 4S (17/1.25mm)",
         type: "Polyester",
         totalPrice: 38,
         tagline: "The gateway poly.",
         description:
           "Softer and more forgiving than performance polys. A natural first step for players moving away from synthetic gut without punishing slower swing speeds.",
+        ratings: { spin: 3, power: 3, control: 4, comfort: 3, durability: 3 },
       },
     ],
   },
@@ -44,20 +47,22 @@ const STRINGS = [
     tier: "Intermediate – Advanced",
     items: [
       {
-        name: "Solinco Hyper-G",
+        name: "Solinco Hyper-G (16/1.30mm)",
         type: "Polyester",
         totalPrice: 39,
         tagline: "More spin. More depth.",
         description:
           "Square-shaped poly that bites into the ball aggressively. Best for players with a developed swing who want to shape shots with heavier topspin.",
+        ratings: { spin: 5, power: 2, control: 5, comfort: 2, durability: 4 },
       },
       {
-        name: "Yonex Polytour Drive",
+        name: "Yonex Polytour Drive (16/1.25mm)",
         type: "Polyester",
         totalPrice: 35,
         tagline: "Control with comfort.",
         description:
           "Performance-level control without the stiffness. Softer and rounder than Hyper-G, with more feel and touch on finesse shots.",
+        ratings: { spin: 4, power: 3, control: 4, comfort: 3, durability: 4 },
       },
     ],
   },
@@ -65,20 +70,22 @@ const STRINGS = [
     tier: "Advanced / Tour",
     items: [
       {
-        name: "Babolat RPM Blast",
+        name: "Babolat RPM Blast (16/1.30mm)",
         type: "Polyester",
         totalPrice: 47,
         tagline: "Nadal's string. Heavy spin.",
         description:
           "Slick co-polyester construction promotes aggressive snap-back for heavy topspin at high swing speeds. The spin-first tour choice.",
+        ratings: { spin: 5, power: 3, control: 4, comfort: 2, durability: 4 },
       },
       {
-        name: "Luxilon ALU Power",
+        name: "Luxilon ALU Power (16L/1.25mm)",
         type: "Polyester",
         totalPrice: 47,
         tagline: "The ATP standard.",
         description:
           "The most widely used string on the ATP tour. Benchmark tension retention, predictability, and feel for players who generate pace consistently.",
+        ratings: { spin: 4, power: 4, control: 5, comfort: 2, durability: 5 },
       },
     ],
   },
@@ -86,137 +93,190 @@ const STRINGS = [
     tier: "Multifilament",
     items: [
       {
-        name: "Wilson Sensation Plus",
+        name: "Wilson Sensation Plus (17/1.28mm)",
         type: "Multifilament",
         totalPrice: 41,
         tagline: "Arm-friendly. Natural feel.",
         description:
           "Mimics the lively comfort of natural gut at a fraction of the cost. Great standalone or as a cross string in a hybrid setup paired with poly mains.",
+        ratings: { spin: 2, power: 5, control: 3, comfort: 5, durability: 2 },
       },
     ],
   },
 ];
 
+const ALL_STRINGS = STRINGS.flatMap((t) => t.items);
+const RATING_LABELS: Array<{ key: keyof typeof ALL_STRINGS[0]["ratings"]; label: string }> = [
+  { key: "spin", label: "Spin" },
+  { key: "power", label: "Power" },
+  { key: "control", label: "Control" },
+  { key: "comfort", label: "Comfort" },
+  { key: "durability", label: "Durability" },
+];
+
+function RatingBar({ value }: { value: number }) {
+  return (
+    <div className="flex gap-1">
+      {[1, 2, 3, 4, 5].map((i) => (
+        <div
+          key={i}
+          className="h-2 flex-1 rounded-full"
+          style={{
+            backgroundColor: GREEN,
+            opacity: i <= value ? 0.9 : 0.12,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
+
+function CompareTool() {
+  const [selected, setSelected] = useState<string[]>(["Solinco Hyper-G (16/1.30mm)", "Luxilon ALU Power (16L/1.25mm)"]);
+
+  const toggle = (name: string) => {
+    setSelected((prev) => {
+      if (prev.includes(name)) return prev.filter((n) => n !== name);
+      if (prev.length >= 3) return [...prev.slice(1), name];
+      return [...prev, name];
+    });
+  };
+
+  const chosen = ALL_STRINGS.filter((s) => selected.includes(s.name));
+
+  return (
+    <section id="compare" className="px-6 py-20" style={{ backgroundColor: WHITE }}>
+      <div className="max-w-5xl mx-auto">
+        <p
+          className="text-xs font-black tracking-widest uppercase mb-3 text-center"
+          style={{ color: GREEN, opacity: 0.45 }}
+        >
+          Compare Strings
+        </p>
+        <h2
+          className="text-3xl md:text-4xl font-black tracking-tight text-center mb-4"
+          style={{ color: GREEN }}
+        >
+          Find Your Match
+        </h2>
+        <p
+          className="text-base font-medium text-center mb-10 max-w-lg mx-auto leading-relaxed"
+          style={{ color: GREEN, opacity: 0.65 }}
+        >
+          Pick up to 3 strings to see them side-by-side. Ratings reflect typical play
+          characteristics on a 1–5 scale.
+        </p>
+
+        {/* Chips */}
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {ALL_STRINGS.map((s) => {
+            const active = selected.includes(s.name);
+            return (
+              <button
+                key={s.name}
+                onClick={() => toggle(s.name)}
+                className="px-4 py-2 rounded-full text-xs font-bold tracking-wide transition-opacity hover:opacity-80"
+                style={{
+                  backgroundColor: active ? GREEN : "transparent",
+                  color: active ? WHITE : GREEN,
+                  border: `1.5px solid ${GREEN}`,
+                }}
+              >
+                {s.name}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Comparison grid */}
+        {chosen.length === 0 ? (
+          <p
+            className="text-center text-sm font-semibold py-12"
+            style={{ color: GREEN, opacity: 0.5 }}
+          >
+            Select at least one string above to compare.
+          </p>
+        ) : (
+          <div
+            className={`grid gap-4 ${
+              chosen.length === 1
+                ? "grid-cols-1 max-w-md mx-auto"
+                : chosen.length === 2
+                ? "grid-cols-1 md:grid-cols-2"
+                : "grid-cols-1 md:grid-cols-3"
+            }`}
+          >
+            {chosen.map((s) => (
+              <div
+                key={s.name}
+                className="rounded-2xl p-6 flex flex-col gap-4"
+                style={{ backgroundColor: CREAM }}
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <h3
+                      className="text-base font-black leading-tight"
+                      style={{ color: GREEN }}
+                    >
+                      {s.name}
+                    </h3>
+                    <span
+                      className="text-xs font-semibold tracking-wide uppercase"
+                      style={{ color: GREEN, opacity: 0.4 }}
+                    >
+                      {s.type}
+                    </span>
+                  </div>
+                  <span
+                    className="text-xl font-black shrink-0"
+                    style={{ color: GREEN }}
+                  >
+                    ${s.totalPrice}
+                  </span>
+                </div>
+
+                <p
+                  className="text-xs font-black tracking-wide uppercase"
+                  style={{ color: GREEN, opacity: 0.5 }}
+                >
+                  {s.tagline}
+                </p>
+
+                <div className="flex flex-col gap-2.5 pt-2">
+                  {RATING_LABELS.map(({ key, label }) => (
+                    <div key={key} className="flex items-center gap-3">
+                      <span
+                        className="text-xs font-bold tracking-wide uppercase w-20 shrink-0"
+                        style={{ color: GREEN, opacity: 0.7 }}
+                      >
+                        {label}
+                      </span>
+                      <div className="flex-1">
+                        <RatingBar value={s.ratings[key]} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
 function LogoBadge() {
   return (
-    <svg
-      viewBox="0 0 340 310"
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-full h-full"
-    >
-      <defs>
-        <path id="textArc" d="M 24 172 A 146 146 0 0 1 316 172" />
-      </defs>
-      {/* Arch badge background */}
-      <path
-        d="M 15 310 L 15 158 A 155 155 0 0 1 325 158 L 325 310 Z"
-        fill={WHITE}
-      />
-      {/* Tennis ball */}
-      <circle cx="170" cy="182" r="88" fill={GREEN} />
-      {/* Ball seam left */}
-      <path
-        d="M 100 148 Q 136 182 100 216"
-        stroke={WHITE}
-        strokeWidth="9"
-        fill="none"
-        strokeLinecap="round"
-      />
-      {/* Ball seam right */}
-      <path
-        d="M 240 148 Q 204 182 240 216"
-        stroke={WHITE}
-        strokeWidth="9"
-        fill="none"
-        strokeLinecap="round"
-      />
-      {/* EST pill */}
-      <rect x="30" y="255" width="58" height="26" rx="13" fill={GREEN} />
-      <text
-        x="59"
-        y="273"
-        fontFamily="Arial Black, Arial"
-        fontSize="11"
-        fontWeight="900"
-        fill={WHITE}
-        textAnchor="middle"
-      >
-        EST
-      </text>
-      {/* 2026 pill */}
-      <rect x="252" y="255" width="58" height="26" rx="13" fill={GREEN} />
-      <text
-        x="281"
-        y="273"
-        fontFamily="Arial Black, Arial"
-        fontSize="11"
-        fontWeight="900"
-        fill={WHITE}
-        textAnchor="middle"
-      >
-        2026
-      </text>
-      {/* Curved "STRING THEORY NYC" text */}
-      <text
-        fontFamily="Arial Black, Arial"
-        fontSize="23"
-        fontWeight="900"
-        fill={GREEN}
-        letterSpacing="3"
-      >
-        <textPath href="#textArc" startOffset="50%" textAnchor="middle">
-          STRING THEORY NYC
-        </textPath>
-      </text>
-      {/* Bottom left */}
-      <text
-        x="28"
-        y="292"
-        fontFamily="Arial Black, Arial"
-        fontSize="9.5"
-        fontWeight="900"
-        fill={GREEN}
-        letterSpacing="1"
-      >
-        TENNIS RACQUET
-      </text>
-      <text
-        x="28"
-        y="305"
-        fontFamily="Arial Black, Arial"
-        fontSize="9.5"
-        fontWeight="900"
-        fill={GREEN}
-        letterSpacing="1"
-      >
-        STRINGING
-      </text>
-      {/* Bottom right */}
-      <text
-        x="312"
-        y="292"
-        fontFamily="Arial Black, Arial"
-        fontSize="9.5"
-        fontWeight="900"
-        fill={GREEN}
-        letterSpacing="1"
-        textAnchor="end"
-      >
-        MANHATTAN
-      </text>
-      <text
-        x="312"
-        y="305"
-        fontFamily="Arial Black, Arial"
-        fontSize="9.5"
-        fontWeight="900"
-        fill={GREEN}
-        letterSpacing="1"
-        textAnchor="end"
-      >
-        NYC
-      </text>
-    </svg>
+    <Image
+      src="/logo.png"
+      alt="String Theory NYC logo"
+      width={520}
+      height={520}
+      priority
+      unoptimized
+      className="w-full h-full object-contain"
+    />
   );
 }
 
@@ -239,6 +299,13 @@ export default function StringTheoryNYC() {
             style={{ color: GREEN }}
           >
             Strings
+          </a>
+          <a
+            href="#compare"
+            className="hidden sm:block text-sm font-semibold tracking-wide hover:opacity-70 transition-opacity"
+            style={{ color: GREEN }}
+          >
+            Compare
           </a>
           <a
             href="#contact"
@@ -266,7 +333,7 @@ export default function StringTheoryNYC() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="w-52 h-52 mb-10"
+          className="w-80 h-80 md:w-96 md:h-96 mb-10"
         >
           <LogoBadge />
         </motion.div>
@@ -278,9 +345,9 @@ export default function StringTheoryNYC() {
           className="text-4xl md:text-6xl font-black tracking-tight leading-tight max-w-2xl mb-5"
           style={{ color: GREEN }}
         >
-          Your Racket.
+          Don&apos;t Blame Your Game.
           <br />
-          Freshly Strung.
+          Blame Your Strings.
         </motion.h1>
 
         <motion.p
@@ -290,8 +357,7 @@ export default function StringTheoryNYC() {
           className="text-lg md:text-xl font-medium max-w-md mb-10 leading-relaxed"
           style={{ color: GREEN, opacity: 0.75 }}
         >
-          Professional tennis racket stringing in Manhattan.
-          Drop off. Pick up. Play.
+          NYC tennis stringing services. Quick turnaround times, without the shop mark-up. By local tennis players, for local tennis players.
         </motion.p>
 
         <motion.div
@@ -338,17 +404,17 @@ export default function StringTheoryNYC() {
               {
                 step: "01",
                 title: "Drop Off",
-                body: "Bring your racket to 347 E 76th St in Manhattan. We'll log your string preference and tension.",
+                body: "Fill out the form below with your preferred setup and drop your racket off at our Upper East Side location. Racket drop off may also be feasible in Midtown midweek.",
               },
               {
                 step: "02",
                 title: "We String",
-                body: "Expert stringing with your choice of string and tension. Every job done with care and consistency.",
+                body: "Detailed stringing with your choice of string and tension. Or consult us for a setup recommendation.",
               },
               {
                 step: "03",
                 title: "Pick Up",
-                body: "We'll reach out when your racket is ready. Swing by, grab it, and get back on the court.",
+                body: "Standard turnaround is 24–48 hours — we'll let you know when your racket is ready for pickup so you can get back out there. Same-day requests can be accommodated for an additional fee.",
               },
             ].map(({ step, title, body }) => (
               <div key={step} className="flex flex-col items-start">
@@ -464,20 +530,11 @@ export default function StringTheoryNYC() {
             ))}
           </div>
 
-          {/* Special orders note */}
-          <div
-            className="mt-10 rounded-2xl px-6 py-5 flex flex-col sm:flex-row sm:items-center gap-3"
-            style={{ backgroundColor: GREEN, color: WHITE }}
-          >
-            <span className="text-2xl">🎾</span>
-            <p className="text-sm font-semibold leading-relaxed">
-              <strong>Need a string not listed?</strong> We take special orders
-              — natural gut, hybrid setups, custom requests, or your own string. Allow 5–7 days.
-              Small sourcing fee may apply.
-            </p>
-          </div>
         </div>
       </section>
+
+      {/* ── COMPARE TOOL ─────────────────────────────────────── */}
+      <CompareTool />
 
       {/* ── MAP ──────────────────────────────────────────────── */}
       <section className="px-6 py-20" style={{ backgroundColor: WHITE }}>
