@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>String Theory NYC — Court Flyer</title>
+<style>
+  @page { size: letter portrait; margin: 0; }
+
+  :root {
+    --green: #26623d;
+    --cream: #ebebd2;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    background: #d8d8b8;
+    color: var(--green);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .flyer {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.5in 0.6in 0.3in;
+    background: var(--cream);
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    page-break-after: always;
+  }
+
+  .logo {
+    width: 2.6in;
+    height: 2.6in;
+    align-self: center;
+    object-fit: contain;
+    margin-bottom: 0.05in;
+  }
+
+  .headline {
+    font-size: 44pt;
+    font-weight: 900;
+    line-height: 0.95;
+    letter-spacing: -1.5px;
+    text-align: center;
+    margin: 0.1in 0 0.2in;
+    text-transform: uppercase;
+  }
+
+  .headline em {
+    font-style: normal;
+    color: var(--green);
+    background: var(--green);
+    color: var(--cream);
+    padding: 0.02in 0.12in;
+    border-radius: 0.05in;
+    display: inline-block;
+  }
+
+  .divider {
+    height: 2px;
+    background: var(--green);
+    opacity: 0.25;
+    margin: 0.1in 0;
+  }
+
+  .subhead {
+    font-size: 15pt;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 0.18in;
+    line-height: 1.35;
+  }
+
+  .bullets {
+    list-style: none;
+    font-size: 13pt;
+    font-weight: 600;
+    line-height: 1.7;
+    text-align: center;
+    margin-bottom: 0.1in;
+  }
+
+  .bullets li::before {
+    content: "✓  ";
+    font-weight: 900;
+  }
+
+  .contact {
+    text-align: center;
+    margin-top: 0.1in;
+  }
+
+  .phone {
+    font-size: 30pt;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    margin-bottom: 0.05in;
+  }
+
+  .meta {
+    font-size: 12pt;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+
+  .qr-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25in;
+    margin: 0.15in 0;
+  }
+
+  .qr {
+    width: 1.2in;
+    height: 1.2in;
+    border: 4px solid var(--green);
+    border-radius: 0.05in;
+  }
+
+  .qr-label {
+    font-size: 11pt;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: left;
+    line-height: 1.3;
+    max-width: 1.6in;
+  }
+
+  .tabs {
+    margin-top: auto;
+    border-top: 2px dashed var(--green);
+    padding-top: 0.08in;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    height: 1in;
+  }
+
+  .tab {
+    border-left: 1px dashed var(--green);
+    text-align: center;
+    padding-top: 0.08in;
+    font-weight: 800;
+    font-size: 8pt;
+    line-height: 1.25;
+  }
+
+  .tab:first-child { border-left: none; }
+
+  .tab strong {
+    display: block;
+    font-size: 10pt;
+    margin-top: 0.02in;
+  }
+
+  /* Variant 2 — practical headline */
+  .flyer.alt .headline { font-size: 38pt; }
+
+  @media screen {
+    body { padding: 0.5in 0; }
+    .flyer { box-shadow: 0 8px 30px rgba(0,0,0,0.15); margin-bottom: 0.5in; }
+    .controls {
+      max-width: 8.5in;
+      margin: 0 auto 1in;
+      padding: 0.5in 0.6in;
+      background: white;
+      border-radius: 0.1in;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      color: var(--green);
+    }
+    .controls h2 { font-size: 14pt; margin-bottom: 0.1in; }
+    .controls p { font-size: 11pt; line-height: 1.5; }
+  }
+
+  @media print {
+    .controls { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <h2>How to print</h2>
+  <p>
+    File → Print (or ⌘P) → Destination: any printer or "Save as PDF" → Paper size: US Letter →
+    <strong>turn ON "Background graphics"</strong> so the cream/green colors print. Margins should be
+    "None" or "Default."
+  </p>
+  <p style="margin-top:0.1in">
+    Two variants below — print whichever you prefer. The QR code dials the shop directly when scanned.
+  </p>
+</div>
+
+<!-- Variant 1: Brand-voice headline -->
+<div class="flyer">
+  <img src="public/logo.png" class="logo" alt="String Theory NYC">
+
+  <h1 class="headline">
+    Don't Blame<br>Your Game.<br><em>Blame Your Strings.</em>
+  </h1>
+
+  <div class="divider"></div>
+
+  <p class="subhead">
+    NYC tennis stringing — Upper East Side.<br>
+    By local players, for local players.
+  </p>
+
+  <ul class="bullets">
+    <li>24–48 hr standard turnaround</li>
+    <li>Same-day available on request</li>
+    <li>Drop-off UES, or Midtown midweek</li>
+    <li>Poly, multi, syn gut, hybrid setups</li>
+  </ul>
+
+  <div class="divider"></div>
+
+  <div class="contact">
+    <div class="phone">TEXT (203) 864-5462</div>
+    <div class="meta">@StringTheoryNYC &nbsp;·&nbsp; stringtheorynyc.com</div>
+    <div class="meta">347 E 76th St, New York, NY 10021</div>
+  </div>
+
+  <div class="qr-row">
+    <img class="qr"
+         src="https://api.qrserver.com/v1/create-qr-code/?data=tel%3A%2B12038645462&size=300x300&color=26623d&bgcolor=ebebd2&qzone=1"
+         alt="Scan to call">
+    <div class="qr-label">
+      Scan to<br>tap-call us<br>directly →
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab">String Theory NYC<strong>(203) 864-5462</strong></div>
+    <div class="tab">String Theory NYC<strong>(203) 864-5462</strong></div>
+    <div class="tab">String Theory NYC<strong>(203) 864-5462</strong></div>
+    <div class="tab">String Theory NYC<strong>(203) 864-5462</strong></div>
+    <div class="tab">String Theory NYC<strong>(203) 864-5462</strong></div>
+    <div class="tab">String Theory NYC<strong>(203) 864-5462</strong></div>
+    <div class="tab">String Theory NYC<strong>(203) 864-5462</strong></div>
+    <div class="tab">String Theory NYC<strong>(203) 864-5462</strong></div>
+  </div>
+</div>
+
+<!-- Variant 2: Practical headline -->
+<div class="flyer alt">
+  <img src="public/logo.png" class="logo" alt="String Theory NYC">
+
+  <h1 class="headline">
+    Fresh Strings.<br>Same Day.<br><em>UES Drop-Off.</em>
+  </h1>
+
+  <div class="divider"></div>
+
+  <p class="subhead">
+    No shop mark-up. No long waits.<br>
+    By local players, for local players.
+  </p>
+
+  <ul class="bullets">
+    <li>24–48 hr standard turnaround</li>
+    <li>Same-day available on request</li>
+    <li>Drop-off UES, or Midtown midweek</li>
+    <li>Poly, multi, syn gut, hybrid setups</li>
+  </ul>
+
+  <div class="divider"></div>
+
+  <div class="contact">
+    <div class="phone">TEXT (203) 864-5462</div>
+    <div class="meta">@StringTheoryNYC &nbsp;·&nbsp; stringtheorynyc.com</div>
+    <div class="meta">347 E 76th St, New York, NY 10021</div>
+  </div>
+
+  <div class="qr-row">
+    <img class="qr"
+         src="https://api.qrserver.com/v1/create-qr-code/?data=tel%3A%2B12038645462&size=300x300&color=26623d&bgcolor=ebebd2&qzone=1"
+         alt="Scan to call">
+    <div class="qr-label">
+      Scan to<br>tap-call us<br>directly →
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab">String Theory NYC<strong>(203) 864-5462</strong></div>
+    <div class="tab">String Theory NYC<strong>(203) 864-5462</strong></div>
+    <div class="tab">String Theory NYC<strong>(203) 864-5462</strong></div>
+    <div class="tab">String Theory NYC<strong>(203) 864-5462</strong></div>
+    <div class="tab">String Theory NYC<strong>(203) 864-5462</strong></div>
+    <div class="tab">String Theory NYC<strong>(203) 864-5462</strong></div>
+    <div class="tab">String Theory NYC<strong>(203) 864-5462</strong></div>
+    <div class="tab">String Theory NYC<strong>(203) 864-5462</strong></div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -21,10 +21,10 @@ const WHITE = "#ffffff";
 
 const STRINGS = [
   {
-    tier: "Recreational",
+    tier: "Easy & Arm-Friendly",
     items: [
       {
-        name: "Babolat Synthetic Gut (16/1.30mm)",
+        name: "Dunlop S-Gut (17/1.25mm)",
         type: "Synthetic Gut",
         totalPrice: 32,
         tagline: "Comfortable. Consistent. Affordable.",
@@ -33,19 +33,37 @@ const STRINGS = [
         ratings: { spin: 2, power: 4, control: 3, comfort: 4, durability: 2 },
       },
       {
-        name: "Tecnifibre 4S (17/1.25mm)",
-        type: "Polyester",
-        totalPrice: 38,
-        tagline: "The gateway poly.",
+        name: "Wilson Sensation Plus (17/1.28mm)",
+        type: "Multifilament",
+        totalPrice: 41,
+        tagline: "Arm-friendly. Natural feel.",
         description:
-          "Softer and more forgiving than performance polys. A natural first step for players moving away from synthetic gut without punishing slower swing speeds.",
-        ratings: { spin: 3, power: 3, control: 4, comfort: 3, durability: 3 },
+          "Mimics the lively comfort of natural gut at a fraction of the cost. Great standalone or as a cross string in a hybrid setup paired with poly mains.",
+        ratings: { spin: 2, power: 5, control: 3, comfort: 5, durability: 2 },
       },
     ],
   },
   {
-    tier: "Intermediate – Advanced",
+    tier: "Performance Polyester",
     items: [
+      {
+        name: "Yonex Polytour Drive (16/1.25mm)",
+        type: "Polyester",
+        totalPrice: 35,
+        tagline: "Control with comfort.",
+        description:
+          "Performance-level control without the stiffness. Softer and rounder than Hyper-G, with more feel and touch on finesse shots.",
+        ratings: { spin: 4, power: 3, control: 4, comfort: 3, durability: 4 },
+      },
+      {
+        name: "Head Hawk Touch (17/1.25mm)",
+        type: "Polyester",
+        totalPrice: 40,
+        tagline: "Polyester without the punishment.",
+        description:
+          "A softer co-poly built for feel and arm comfort. A great pick for players who want poly-level control but find traditional polys too stiff or harsh on the elbow.",
+        ratings: { spin: 3, power: 4, control: 4, comfort: 4, durability: 3 },
+      },
       {
         name: "Solinco Hyper-G (16/1.30mm)",
         type: "Polyester",
@@ -56,20 +74,6 @@ const STRINGS = [
         ratings: { spin: 5, power: 2, control: 5, comfort: 2, durability: 4 },
       },
       {
-        name: "Yonex Polytour Drive (16/1.25mm)",
-        type: "Polyester",
-        totalPrice: 35,
-        tagline: "Control with comfort.",
-        description:
-          "Performance-level control without the stiffness. Softer and rounder than Hyper-G, with more feel and touch on finesse shots.",
-        ratings: { spin: 4, power: 3, control: 4, comfort: 3, durability: 4 },
-      },
-    ],
-  },
-  {
-    tier: "Advanced / Tour",
-    items: [
-      {
         name: "Babolat RPM Blast (16/1.30mm)",
         type: "Polyester",
         totalPrice: 47,
@@ -77,29 +81,6 @@ const STRINGS = [
         description:
           "Slick co-polyester construction promotes aggressive snap-back for heavy topspin at high swing speeds. The spin-first tour choice.",
         ratings: { spin: 5, power: 3, control: 4, comfort: 2, durability: 4 },
-      },
-      {
-        name: "Luxilon ALU Power (16L/1.25mm)",
-        type: "Polyester",
-        totalPrice: 47,
-        tagline: "The ATP standard.",
-        description:
-          "The most widely used string on the ATP tour. Benchmark tension retention, predictability, and feel for players who generate pace consistently.",
-        ratings: { spin: 4, power: 4, control: 5, comfort: 2, durability: 5 },
-      },
-    ],
-  },
-  {
-    tier: "Multifilament",
-    items: [
-      {
-        name: "Wilson Sensation Plus (17/1.28mm)",
-        type: "Multifilament",
-        totalPrice: 41,
-        tagline: "Arm-friendly. Natural feel.",
-        description:
-          "Mimics the lively comfort of natural gut at a fraction of the cost. Great standalone or as a cross string in a hybrid setup paired with poly mains.",
-        ratings: { spin: 2, power: 5, control: 3, comfort: 5, durability: 2 },
       },
     ],
   },
@@ -132,7 +113,7 @@ function RatingBar({ value }: { value: number }) {
 }
 
 function CompareTool() {
-  const [selected, setSelected] = useState<string[]>(["Solinco Hyper-G (16/1.30mm)", "Luxilon ALU Power (16L/1.25mm)"]);
+  const [selected, setSelected] = useState<string[]>(["Solinco Hyper-G (16/1.30mm)", "Head Hawk Touch (17/1.25mm)"]);
 
   const toggle = (name: string) => {
     setSelected((prev) => {
