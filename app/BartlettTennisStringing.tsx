@@ -26,7 +26,7 @@ const STRINGS = [
       {
         name: "Dunlop S-Gut (17/1.25mm)",
         type: "Synthetic Gut",
-        totalPrice: 32,
+        totalPrice: 35,
         tagline: "Comfortable. Consistent. Affordable.",
         description:
           "A sensible all-around string for casual players and beginners. Reliable feel at an accessible price — no frills, just playability.",
@@ -56,13 +56,22 @@ const STRINGS = [
         ratings: { spin: 4, power: 3, control: 4, comfort: 3, durability: 4 },
       },
       {
-        name: "Head Hawk Touch (17/1.25mm)",
+        name: "Head Hawk Touch (17/1.25mm or 16/1.30mm)",
         type: "Polyester",
         totalPrice: 40,
         tagline: "Polyester without the punishment.",
         description:
-          "A softer co-poly built for feel and arm comfort. A great pick for players who want poly-level control but find traditional polys too stiff or harsh on the elbow.",
+          "A softer co-poly built for feel and arm comfort. A great pick for players who want poly-level control but find traditional polys too stiff or harsh on the elbow. Available in 17 gauge (1.25mm) or 16 gauge (1.30mm) — same price either way.",
         ratings: { spin: 3, power: 4, control: 4, comfort: 4, durability: 3 },
+      },
+      {
+        name: "Luxilon ALU Power (16L/1.25mm)",
+        type: "Polyester",
+        totalPrice: 47,
+        tagline: "Federer's string. Tour-tier control.",
+        description:
+          "A legendary co-polyester and one of the most-used strings on the pro tour. Crisp, precise, and penetrating — the pick for players who want depth and pinpoint control on aggressive, flat shots.",
+        ratings: { spin: 4, power: 4, control: 5, comfort: 2, durability: 3 },
       },
       {
         name: "Solinco Hyper-G (16/1.30mm)",
@@ -113,7 +122,7 @@ function RatingBar({ value }: { value: number }) {
 }
 
 function CompareTool() {
-  const [selected, setSelected] = useState<string[]>(["Solinco Hyper-G (16/1.30mm)", "Head Hawk Touch (17/1.25mm)"]);
+  const [selected, setSelected] = useState<string[]>(["Solinco Hyper-G (16/1.30mm)", "Head Hawk Touch (17/1.25mm or 16/1.30mm)"]);
 
   const toggle = (name: string) => {
     setSelected((prev) => {
