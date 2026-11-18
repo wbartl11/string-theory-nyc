@@ -404,7 +404,7 @@ export default function StringTheoryNYC() {
               {
                 step: "03",
                 title: "Pick Up",
-                body: "Standard turnaround is 24–48 hours — we'll let you know when your racket is ready for pickup so you can get back out there. Same-day requests can be accommodated for an additional fee.",
+                body: "Standard turnaround is 24–48 hours — we'll let you know when your racket is ready for pickup so you can get back out there. Same-day requests can be accommodated for an extra $5.",
               },
             ].map(({ step, title, body }) => (
               <div key={step} className="flex flex-col items-start">
@@ -518,6 +518,56 @@ export default function StringTheoryNYC() {
                 </div>
               </div>
             ))}
+
+            {/* Other options: BYO string, hybrids, same-day */}
+            <div>
+              <div className="flex items-center gap-4 mb-5">
+                <span
+                  className="text-xs font-black tracking-widest uppercase shrink-0"
+                  style={{ color: GREEN, opacity: 0.45 }}
+                >
+                  Other Options
+                </span>
+                <div className="flex-1 h-px" style={{ backgroundColor: GREEN, opacity: 0.12 }} />
+              </div>
+              <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: WHITE }}>
+                {[
+                  {
+                    name: "Bring Your Own String",
+                    price: "$30",
+                    note: "Already have a set? Bring it along and we'll string it for you.",
+                  },
+                  {
+                    name: "Hybrid Setup",
+                    price: "$35–$47",
+                    note: "Mix any two strings above, one for the mains and one for the crosses. Price is the average of the two, e.g. Hyper-G ($39) + Sensation Plus ($41) = $40.",
+                  },
+                  {
+                    name: "Same-Day Service",
+                    price: "+$5",
+                    note: "Need it back today? Add same-day turnaround to any stringing.",
+                  },
+                ].map(({ name, price, note }, i) => (
+                  <div
+                    key={name}
+                    className="flex items-start justify-between gap-4 px-6 py-5"
+                    style={{ borderTop: i ? `1px solid rgba(38,98,61,0.1)` : "none" }}
+                  >
+                    <div>
+                      <h3 className="text-base font-black leading-tight" style={{ color: GREEN }}>
+                        {name}
+                      </h3>
+                      <p className="text-sm leading-relaxed mt-1" style={{ color: GREEN, opacity: 0.65 }}>
+                        {note}
+                      </p>
+                    </div>
+                    <span className="text-xl font-black shrink-0" style={{ color: GREEN }}>
+                      {price}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
         </div>
